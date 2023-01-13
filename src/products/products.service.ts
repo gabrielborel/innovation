@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Product } from './product.entity';
+import { UpdateProductInput } from './update-product-input';
 
 @Injectable()
 export class ProductsService {
@@ -24,6 +25,11 @@ export class ProductsService {
   async deleteProduct(id: number): Promise<number> {
     const result = await this.productsRepository.delete(id);
     return result.affected;
+  }
+
+  async updateProduct(id: number, input: UpdateProductInput): Promise<number> {
+    const updatedProduct = await this.productsRepository.update(id, input);
+    return updatedProduct.affected;
   }
 
   private responseStatusMapper(product: Product): Product {
