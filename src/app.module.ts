@@ -8,9 +8,7 @@ import { ProductsModule } from './products/products.module';
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      definitions: {
-        path: join(process.cwd(), 'src/graphql.ts'),
-      },
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
     ProductsModule,
   ],
