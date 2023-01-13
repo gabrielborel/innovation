@@ -21,6 +21,11 @@ export class ProductsService {
     return products.map(this.responseStatusMapper);
   }
 
+  async deleteProduct(id: number): Promise<number> {
+    const result = await this.productsRepository.delete(id);
+    return result.affected;
+  }
+
   private responseStatusMapper(product: Product): Product {
     product.status = product.status === 'active' ? 'ativo' : 'inativo';
     return product;

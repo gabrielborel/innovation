@@ -22,4 +22,14 @@ export class ProductsResolver {
     };
     return this.productsService.createProduct(formattedInput);
   }
+
+  @Mutation(() => String)
+  async deleteProduct(@Args('productId') id: number): Promise<string> {
+    const deleted = await this.productsService.deleteProduct(id);
+    if (deleted) {
+      return 'Produto deletado.';
+    } else {
+      return 'Produto não encontrado.';
+    }
+  }
 }
