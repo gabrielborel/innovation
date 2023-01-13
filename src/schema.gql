@@ -25,14 +25,14 @@ scalar DateTime
 
 type Query {
   products: [Product!]!
-  product(productId: Int!): Product!
+  product(productId: Int!): Product
   cities: [City!]!
 }
 
 type Mutation {
   createProduct(createProductInput: CreateProductInput!): Product!
-  deleteProduct(productId: Float!): Product!
-  updateProduct(productId: Int!, updateProductInput: UpdateProductInput!): Product!
+  deleteProduct(productId: Float!): Product
+  updateProduct(productId: Int!, updateProductInput: UpdateProductInput!): Product
 }
 
 input CreateProductInput {

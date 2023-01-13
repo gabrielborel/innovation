@@ -13,7 +13,7 @@ export class ProductsResolver {
     return this.productsService.findAll();
   }
 
-  @Query(() => Product)
+  @Query(() => Product, { nullable: true })
   async product(
     @Args({
       name: 'productId',
@@ -35,12 +35,12 @@ export class ProductsResolver {
     return this.productsService.createProduct(formattedInput);
   }
 
-  @Mutation(() => Product)
+  @Mutation(() => Product, { nullable: true })
   async deleteProduct(@Args('productId') id: number): Promise<Product> {
     return await this.productsService.deleteProduct(id);
   }
 
-  @Mutation(() => Product)
+  @Mutation(() => Product, { nullable: true })
   async updateProduct(
     @Args({ name: 'productId', type: () => Int }) id: number,
     @Args('updateProductInput') input: UpdateProductInput,

@@ -23,18 +23,26 @@ export class ProductsService {
   }
 
   async findById(id: number): Promise<Product | null> {
-    return await this.productsRepository.findOneBy({ id });
+    const product = await this.productsRepository.findOneBy({ id });
+    if (!product) return null;
   }
 
-  async deleteProduct(id: number): Promise<Product> {
+  async deleteProduct(id: number): Promise<Product | null> {
     const product = await this.findById(id);
+    if (!product) return null;
+
     product.deletedAt = new Date();
     return product;
   }
 
-  async updateProduct(id: number, input: UpdateProductInput): Promise<Product> {
+  async updateProduct(
+    id: number,
+    input: UpdateProductInput,
+  ): Promise<Product | null> {
     await this.productsRepository.update(id, input);
     const product = await this.findById(id);
+    if (!product) return null;
+
     return this.productStatusMapper(product);
   }
 
