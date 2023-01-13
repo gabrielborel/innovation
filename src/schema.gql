@@ -20,6 +20,7 @@ scalar DateTime
 
 type Query {
   products: [Product!]!
+  product(productId: Int!): Product!
 }
 
 type Mutation {

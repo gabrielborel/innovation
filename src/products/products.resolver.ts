@@ -13,6 +13,17 @@ export class ProductsResolver {
     return this.productsService.findAll();
   }
 
+  @Query(() => Product)
+  async product(
+    @Args({
+      name: 'productId',
+      type: () => Int,
+    })
+    id: number,
+  ): Promise<Product> {
+    return await this.productsService.findById(id);
+  }
+
   @Mutation(() => Product)
   createProduct(
     @Args('createProductInput') input: CreateProductInput,
