@@ -13,12 +13,12 @@ services:
     volumes:
       - db-volume:/var/lib/mysql
 
-  # backend:
-  #   build: .
-  #   ports:
-  #     - '3000:3000'
-  #   depends_on:
-  #     - database
+  backend:
+    build: .
+    ports:
+      - '3000:3000'
+    depends_on:
+      - database
 
 volumes:
   db-volume:
