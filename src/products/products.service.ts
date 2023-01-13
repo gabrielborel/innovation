@@ -11,11 +11,18 @@ export class ProductsService {
   ) {}
 
   async createProduct(input: CreateProductInput): Promise<Product> {
-    const product = this.productsRepository.create(input);
-    return await this.productsRepository.save(product);
+    const createdProduct = this.productsRepository.create(input);
+    const product = await this.productsRepository.save(createdProduct);
+    return this.responseStatusMapper(product);
   }
 
   async findAll(): Promise<Product[]> {
-    return await this.productsRepository.find();
+    const products = await this.productsRepository.find();
+    return products.map(this.responseStatusMapper);
+  }
+
+  private responseStatusMapper(product: Product): Product {
+    product.status = product.status === 'active' ? 'ativo' : 'inativo';
+    return product;
   }
 }

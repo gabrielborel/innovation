@@ -16,6 +16,10 @@ export class ProductsResolver {
   createProduct(
     @Args('createProductInput') input: CreateProductInput,
   ): Promise<Product> {
-    return this.productsService.createProduct(input);
+    const formattedInput = {
+      ...input,
+      status: input.status === 'ativo' ? 'active' : 'inactive',
+    };
+    return this.productsService.createProduct(formattedInput);
   }
 }
