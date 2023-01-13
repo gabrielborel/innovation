@@ -14,7 +14,7 @@ import { ProductsModule } from './products/products.module';
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: 'database',
       port: 3306,
       username: 'user',
       password: 'password',
