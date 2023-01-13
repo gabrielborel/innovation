@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'node:path';
+import { CitiesModule } from './cities/cities.module';
 import { ProductsModule } from './products/products.module';
 
 @Module({
@@ -22,6 +23,7 @@ import { ProductsModule } from './products/products.module';
       synchronize: true,
     }),
     ProductsModule,
+    CitiesModule,
   ],
   controllers: [],
   providers: [],
