@@ -6,10 +6,11 @@ type Product {
   id: Int!
   name: String!
   category: String!
+  status: String!
   quantity: Int!
-  created_at: DateTime!
+  createdAt: DateTime!
   updatedAt: DateTime!
-  deletedAt: DateTime!
+  deletedAt: DateTime
 }
 
 """
@@ -19,4 +20,15 @@ scalar DateTime
 
 type Query {
   products: [Product!]!
+}
+
+type Mutation {
+  createProduct(createProductInput: CreateProductInput!): Product!
+}
+
+input CreateProductInput {
+  name: String!
+  category: String!
+  quantity: Int!
+  status: String!
 }
