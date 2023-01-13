@@ -22,14 +22,20 @@ export class ProductsService {
     return products.map(this.responseStatusMapper);
   }
 
-  async deleteProduct(id: number): Promise<number> {
-    const result = await this.productsRepository.delete(id);
-    return result.affected;
+  async findById(id: number): Promise<Product | null> {
+    return await this.productsRepository.findOneBy({ id });
   }
 
-  async updateProduct(id: number, input: UpdateProductInput): Promise<number> {
-    const updatedProduct = await this.productsRepository.update(id, input);
-    return updatedProduct.affected;
+  async deleteProduct(id: number): Promise<Product> {
+    const product = await this.findById(id);
+    product.deletedAt = new Date();
+    return product;
+  }
+
+  async updateProduct(id: number, input: UpdateProductInput): Promise<Product> {
+    await this.productsRepository.update(id, input);
+    const product = await this.findById(id);
+    return this.responseStatusMapper(product);
   }
 
   private responseStatusMapper(product: Product): Product {

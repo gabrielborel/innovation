@@ -24,26 +24,16 @@ export class ProductsResolver {
     return this.productsService.createProduct(formattedInput);
   }
 
-  @Mutation(() => String)
-  async deleteProduct(@Args('productId') id: number): Promise<string> {
-    const deleted = await this.productsService.deleteProduct(id);
-    if (deleted) {
-      return 'Produto deletado.';
-    } else {
-      return 'Produto não encontrado.';
-    }
+  @Mutation(() => Product)
+  async deleteProduct(@Args('productId') id: number): Promise<Product> {
+    return await this.productsService.deleteProduct(id);
   }
 
-  @Mutation(() => String)
+  @Mutation(() => Product)
   async updateProduct(
     @Args({ name: 'productId', type: () => Int }) id: number,
     @Args('updateProductInput') input: UpdateProductInput,
-  ): Promise<string> {
-    const deleted = await this.productsService.updateProduct(id, input);
-    if (deleted) {
-      return 'Produto atualizado.';
-    } else {
-      return 'Produto não encontrado.';
-    }
+  ): Promise<Product> {
+    return await this.productsService.updateProduct(id, input);
   }
 }
