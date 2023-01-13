@@ -50,4 +50,4 @@ Documentação sobre as Queries/Mutations existentes estão no GraphQL Playgroun
 # Vídeo explicativo
 Segue o endereço do vídeo explicativo sobre o que foi desenvolvido e como instalar:
 
-[Desafio Sharenergy por Gabriel Borel](https://www.youtube.com/watch?v=sKcTWsxinS0&feature=youtu.be)
+[Desafio Innovation por Gabriel Borel](https://www.youtube.com/watch?v=sKcTWsxinS0&feature=youtu.be)
