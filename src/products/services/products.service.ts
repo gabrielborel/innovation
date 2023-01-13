@@ -18,13 +18,17 @@ export class ProductsService {
   }
 
   async findAll(): Promise<Product[]> {
-    const products = await this.productsRepository.find();
+    const products = await this.productsRepository.find({
+      withDeleted: true,
+    });
     return products.map(this.productStatusMapper);
   }
 
   async findById(id: number): Promise<Product | null> {
     const product = await this.productsRepository.findOneBy({ id });
     if (!product) return null;
+
+    return product;
   }
 
   async deleteProduct(id: number): Promise<Product | null> {
@@ -32,6 +36,7 @@ export class ProductsService {
     if (!product) return null;
 
     product.deletedAt = new Date();
+    await this.updateProduct(id, product);
     return product;
   }
 
