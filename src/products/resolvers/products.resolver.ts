@@ -1,8 +1,8 @@
-import { UpdateProductInput } from './update-product-input';
+import { UpdateProductInput } from '../inputs/update-product-input';
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { CreateProductInput } from './create-product-input';
-import { Product } from './product.entity';
-import { ProductsService } from './products.service';
+import { CreateProductInput } from '../inputs/create-product-input';
+import { Product } from '../models/product.entity';
+import { ProductsService } from '../services/products.service';
 
 @Resolver(() => Product)
 export class ProductsResolver {

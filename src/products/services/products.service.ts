@@ -1,9 +1,9 @@
-import { CreateProductInput } from './create-product-input';
+import { CreateProductInput } from '../inputs/create-product-input';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Product } from './product.entity';
-import { UpdateProductInput } from './update-product-input';
+import { Product } from '../models/product.entity';
+import { UpdateProductInput } from '../inputs/update-product-input';
 
 @Injectable()
 export class ProductsService {
