@@ -14,12 +14,12 @@ export class ProductsService {
   async createProduct(input: CreateProductInput): Promise<Product> {
     const createdProduct = this.productsRepository.create(input);
     const product = await this.productsRepository.save(createdProduct);
-    return this.responseStatusMapper(product);
+    return this.productStatusMapper(product);
   }
 
   async findAll(): Promise<Product[]> {
     const products = await this.productsRepository.find();
-    return products.map(this.responseStatusMapper);
+    return products.map(this.productStatusMapper);
   }
 
   async findById(id: number): Promise<Product | null> {
@@ -35,10 +35,10 @@ export class ProductsService {
   async updateProduct(id: number, input: UpdateProductInput): Promise<Product> {
     await this.productsRepository.update(id, input);
     const product = await this.findById(id);
-    return this.responseStatusMapper(product);
+    return this.productStatusMapper(product);
   }
 
-  private responseStatusMapper(product: Product): Product {
+  private productStatusMapper(product: Product): Product {
     product.status = product.status === 'active' ? 'ativo' : 'inativo';
     return product;
   }
