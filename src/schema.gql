@@ -2,6 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type City {
+  id: Int!
+  name: String!
+}
+
 type Product {
   id: Int!
   name: String!
@@ -21,6 +26,7 @@ scalar DateTime
 type Query {
   products: [Product!]!
   product(productId: Int!): Product!
+  cities: [City!]!
 }
 
 type Mutation {
