@@ -1,5 +1,12 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity({ name: 'products' })
 @ObjectType()
@@ -17,18 +24,22 @@ export class Product {
   category: string;
 
   @Column()
+  @Field(() => String)
+  status: string;
+
+  @Column()
   @Field(() => Int)
   quantity: number;
 
-  @Column()
-  @Field({ name: 'created_at' })
+  @CreateDateColumn({ name: 'created_at' })
+  @Field()
   createdAt: Date;
 
-  @Column({ name: 'updated_at' })
+  @UpdateDateColumn({ name: 'updated_at' })
   @Field()
   updatedAt: Date;
 
-  @Column({ nullable: true, name: 'deleted_at' })
-  @Field()
+  @DeleteDateColumn({ name: 'deleted_at', nullable: true })
+  @Field({ nullable: true })
   deletedAt: Date;
 }
